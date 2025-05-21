@@ -32,7 +32,8 @@ class _CalendarDateRangePickerWidgetState
                 setState(() {});
               },
               onEndDateChanged: (date) {
-                dateRange.last = date;
+                if (date != null) return;
+                dateRange.last = date!;
                 setState(() {});
               },
             ),
