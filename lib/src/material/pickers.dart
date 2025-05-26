@@ -2,7 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-export 'calendar_date_picker.dart' show CalendarDatePicker;
+export 'calendar_date_picker.dart'
+    show CalendarDatePicker, NepaliYearPicker, NepaliMonthPicker;
 export 'date_picker.dart'
     show
         CalendarDateRangePicker,
