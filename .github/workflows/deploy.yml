@@ -20,3 +20,4 @@ jobs:
           workingDir: example
           baseHref: /
           customArgs: --wasm
+          cname: date.sarbagyastha.com.np
