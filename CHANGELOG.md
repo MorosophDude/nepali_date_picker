@@ -1,3 +1,7 @@
+## 7.0.1
+**Aug 18, 2025**
+- Fixes issue with `flutter >= 3.35.0`.
+
 ## 7.0.0
 **May 21, 2025**
 - Upgrades to Material 3 styled date picker using the newly introduced [CalendarDelegate](https://github.com/flutter/flutter/pull/161874).
