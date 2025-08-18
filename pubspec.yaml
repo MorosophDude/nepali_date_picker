@@ -1,6 +1,6 @@
 name: nepali_date_picker
 description: A customizable Nepali date picker for Flutter with full Bikram Sambat calendar support and localization.
-version: 7.0.0
+version: 7.0.1
 homepage: https://date.sarbagyastha.com.np/
 repository: https://github.com/sarbagyastha/nepali_date_picker
 issue_tracker: https://github.com/sarbagyastha/nepali_date_picker/issues
@@ -20,7 +20,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 screenshots:
   - description: Date Picker in English; Light Theme

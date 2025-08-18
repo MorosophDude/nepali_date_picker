@@ -229,13 +229,10 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     ValueChanged<T> onChanged,
   ) {
     return Flexible(
-      child: RadioListTile<T>(
-        value: value,
+      child: RadioGroup<T>(
         groupValue: groupValue,
-        onChanged: _design == 'm' && groupValue == _dateOrder
-            ? null
-            : (v) => onChanged(v as T),
-        title: Text(title),
+        onChanged: (v) => onChanged(v as T),
+        child: RadioListTile<T>(value: value, title: Text(title)),
       ),
     );
   }
