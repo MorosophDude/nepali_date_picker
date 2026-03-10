@@ -3,8 +3,10 @@ import 'package:nepali_date_picker/nepali_date_picker.dart';
 
 ///
 class YearPickerWidget extends StatefulWidget {
+  const YearPickerWidget({super.key});
+
   @override
-  _YearPickerWidgetState createState() => _YearPickerWidgetState();
+  State<YearPickerWidget> createState() => _YearPickerWidgetState();
 }
 
 class _YearPickerWidgetState extends State<YearPickerWidget> {
@@ -20,25 +22,15 @@ class _YearPickerWidgetState extends State<YearPickerWidget> {
           if (_selectedYear != null)
             Text(
               'Selected Year: ${NepaliDateFormat.y().format(_selectedYear!)}',
-              style: TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: 18.0,
-              ),
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
               textAlign: TextAlign.center,
             ),
           SizedBox(height: 20),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 50.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-              ),
+            child: FilledButton.tonal(
               onPressed: () async {
-                _selectedYear = await showMaterialYearPicker(
+                _selectedYear = await showNepaliYearPicker(
                   context: context,
                   firstYear: NepaliDateTime(2020),
                   lastYear: NepaliDateTime(2099),
@@ -46,17 +38,7 @@ class _YearPickerWidgetState extends State<YearPickerWidget> {
                 );
                 setState(() {});
               },
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'SELECT YEAR',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-              ),
+              child: Text('SELECT YEAR'),
             ),
           ),
         ],
