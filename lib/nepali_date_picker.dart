@@ -11,3 +11,4 @@ export 'src/cupertino.dart';
 export 'src/material.dart';
 export 'src/nepali_calendar_delegate.dart';
 export 'src/overrides/date_range_picker.dart' show CalendarDateRangePicker;
+export 'src/overrides/month_picker.dart' show MonthPicker;

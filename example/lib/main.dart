@@ -11,6 +11,8 @@ import 'modes/calendar_date_picker_widget.dart';
 import 'modes/calendar_date_range_picker_widget.dart';
 import 'modes/date_picker_widget.dart';
 import 'modes/date_range_picker_widget.dart';
+import 'modes/month_picker_widget.dart';
+import 'modes/year_picker_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -50,7 +52,7 @@ class HomePage extends StatelessWidget {
     final appScope = AppScope.of(context);
 
     return DefaultTabController(
-      length: 4,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Nepali Date Picker'),
@@ -61,6 +63,8 @@ class HomePage extends StatelessWidget {
               Tab(text: 'Calendar'),
               Tab(text: 'Date Range Picker'),
               Tab(text: 'Calendar Range'),
+              Tab(text: 'Year Picker'),
+              Tab(text: 'Month Picker'),
             ],
           ),
           actions: [
@@ -107,6 +111,8 @@ class HomePage extends StatelessWidget {
                     CalendarDatePickerWidget(),
                     DateRangePickerWidget(),
                     CalendarDateRangePickerWidget(),
+                    YearPickerWidget(),
+                    MonthPickerWidget(),
                   ],
                 ),
               ),
