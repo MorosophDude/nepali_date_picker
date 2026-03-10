@@ -242,63 +242,6 @@ Future<NepaliDateTime?> showNepaliYearPicker({
   );
   assert(debugCheckHasMaterialLocalizations(context));
 
-  Widget picker = YearPicker(
-    firstDate: firstYear,
-    lastDate: lastYear,
-    currentDate: currentYear ?? NepaliDateTime.now(),
-    selectedDate: selectedYear,
-    onChanged: (value) => Navigator.pop(context, value),
-    calendarDelegate: NepaliCalendarDelegate(),
-  );
-
-  if (textDirection != null) {
-    picker = Directionality(textDirection: textDirection, child: picker);
-  }
-
-  if (locale != null) {
-    picker = Localizations.override(
-      context: context,
-      locale: locale,
-      child: picker,
-    );
-  } else {
-    final DatePickerThemeData datePickerTheme = DatePickerTheme.of(context);
-    if (datePickerTheme.locale != null) {
-      picker = Localizations.override(
-        context: context,
-        locale: datePickerTheme.locale,
-        child: picker,
-      );
-    }
-  }
-
-  picker = Dialog(
-    insetPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-    clipBehavior: Clip.antiAlias,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16),
-        Flexible(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              helpText ??
-                  (NepaliUtils().language == Language.english
-                      ? 'SELECT YEAR'
-                      : 'साल चयन गर्नुहोस'),
-              style: Theme.of(context).textTheme.labelSmall,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ),
-        Expanded(child: picker),
-      ],
-    ),
-  );
-
   return showDialog<NepaliDateTime>(
     context: context,
     barrierDismissible: barrierDismissible,
@@ -306,8 +249,69 @@ Future<NepaliDateTime?> showNepaliYearPicker({
     barrierLabel: barrierLabel,
     useRootNavigator: useRootNavigator,
     routeSettings: routeSettings,
-    builder: (BuildContext context) =>
-        builder == null ? picker : builder(context, picker),
+    builder: (BuildContext dialogContext) {
+      Widget picker = YearPicker(
+        firstDate: firstYear,
+        lastDate: lastYear,
+        currentDate: currentYear ?? NepaliDateTime.now(),
+        selectedDate: selectedYear,
+        onChanged: (value) => Navigator.pop(dialogContext, value),
+        calendarDelegate: NepaliCalendarDelegate(),
+      );
+
+      if (textDirection != null) {
+        picker = Directionality(textDirection: textDirection, child: picker);
+      }
+
+      if (locale != null) {
+        picker = Localizations.override(
+          context: context,
+          locale: locale,
+          child: picker,
+        );
+      } else {
+        final DatePickerThemeData datePickerTheme = DatePickerTheme.of(context);
+        if (datePickerTheme.locale != null) {
+          picker = Localizations.override(
+            context: context,
+            locale: datePickerTheme.locale,
+            child: picker,
+          );
+        }
+      }
+
+      picker = Dialog(
+        insetPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 24.0,
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  helpText ??
+                      (NepaliUtils().language == Language.english
+                          ? 'SELECT YEAR'
+                          : 'साल चयन गर्नुहोस'),
+                  style: Theme.of(context).textTheme.labelSmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            Expanded(child: picker),
+          ],
+        ),
+      );
+
+      return builder == null ? picker : builder(dialogContext, picker);
+    },
     anchorPoint: anchorPoint,
   );
 }
@@ -392,63 +396,6 @@ Future<NepaliDateTime?> showNepaliMonthPicker({
   );
   assert(debugCheckHasMaterialLocalizations(context));
 
-  Widget picker = MonthPicker(
-    firstDate: firstMonth,
-    lastDate: lastMonth,
-    currentDate: currentMonth ?? now,
-    selectedDate: selectedMonth,
-    onChanged: (value) => Navigator.pop(context, value),
-    calendarDelegate: NepaliCalendarDelegate(),
-  );
-
-  if (textDirection != null) {
-    picker = Directionality(textDirection: textDirection, child: picker);
-  }
-
-  if (locale != null) {
-    picker = Localizations.override(
-      context: context,
-      locale: locale,
-      child: picker,
-    );
-  } else {
-    final DatePickerThemeData datePickerTheme = DatePickerTheme.of(context);
-    if (datePickerTheme.locale != null) {
-      picker = Localizations.override(
-        context: context,
-        locale: datePickerTheme.locale,
-        child: picker,
-      );
-    }
-  }
-
-  picker = Dialog(
-    insetPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-    clipBehavior: Clip.antiAlias,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16),
-        Flexible(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              helpText ??
-                  (NepaliUtils().language == Language.english
-                      ? 'SELECT Month'
-                      : 'महिना चयन गर्नुहोस'),
-              style: Theme.of(context).textTheme.labelSmall,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ),
-        Flexible(child: picker),
-      ],
-    ),
-  );
-
   return showDialog<NepaliDateTime>(
     context: context,
     barrierDismissible: barrierDismissible,
@@ -456,8 +403,69 @@ Future<NepaliDateTime?> showNepaliMonthPicker({
     barrierLabel: barrierLabel,
     useRootNavigator: useRootNavigator,
     routeSettings: routeSettings,
-    builder: (BuildContext context) =>
-        builder == null ? picker : builder(context, picker),
+    builder: (BuildContext dialogContext) {
+      Widget picker = MonthPicker(
+        firstDate: firstMonth!,
+        lastDate: lastMonth!,
+        currentDate: currentMonth ?? now,
+        selectedDate: selectedMonth,
+        onChanged: (value) => Navigator.pop(dialogContext, value),
+        calendarDelegate: NepaliCalendarDelegate(),
+      );
+
+      if (textDirection != null) {
+        picker = Directionality(textDirection: textDirection, child: picker);
+      }
+
+      if (locale != null) {
+        picker = Localizations.override(
+          context: context,
+          locale: locale,
+          child: picker,
+        );
+      } else {
+        final DatePickerThemeData datePickerTheme = DatePickerTheme.of(context);
+        if (datePickerTheme.locale != null) {
+          picker = Localizations.override(
+            context: context,
+            locale: datePickerTheme.locale,
+            child: picker,
+          );
+        }
+      }
+
+      picker = Dialog(
+        insetPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 24.0,
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  helpText ??
+                      (NepaliUtils().language == Language.english
+                          ? 'SELECT Month'
+                          : 'महिना चयन गर्नुहोस'),
+                  style: Theme.of(context).textTheme.labelSmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            Flexible(child: picker),
+          ],
+        ),
+      );
+
+      return builder == null ? picker : builder(dialogContext, picker);
+    },
     anchorPoint: anchorPoint,
   );
 }
